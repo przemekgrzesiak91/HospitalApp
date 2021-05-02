@@ -6,7 +6,6 @@ import datetime
 db = sqlite3.connect('szpital.db')
 cursor = db.cursor()
 
-
 def insert_worker(entries):
     cursor.execute('''INSERT INTO PRACOWNICY VALUES(?,?,?,?,?,?,?,?,?,?,?)''',list(entries[0:11]))
     db.commit()
@@ -17,7 +16,7 @@ def last_worker():
     return ((id[0]))
 
 def insert_doctor(entries):
-    cursor.execute('''INSERT INTO LEKARZE VALUES(?,?,?,?,?)''', list(entires[0:5]))
+    cursor.execute('''INSERT INTO LEKARZE VALUES(?,?,?,?,?)''', list(entries[0:5]))
     db.commit()
 
 def insert_patient(entries):
@@ -387,17 +386,7 @@ class Window(Frame):
         for x in results:
             result.insert(END, x)
 
-    def choose_query(self,i):
-        self.clear_all()
 
-        L0 = Label(self.frame,text='Wybrałeś :')
-        L0.grid(column=0, row=0)
-
-        L1 = Label(self.frame, text=self.queries[i], wraplength=700)
-        L1.grid(column=0, row=1)
-
-        results = queries_commands(i)
-        self.print_results(results)
 
     def make_combobox(self,my_text,my_results,my_row=0):
         L0 = Label(self.frame, text=my_text)
